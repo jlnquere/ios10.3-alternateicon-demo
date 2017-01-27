@@ -8,83 +8,8 @@ You should notice that `You have changed the icon for "Sinple Fan"` is a system 
 
 ## How it works
 
-### Declare
-First: you should declare all alternate icons in the `info.plist` file. The problem is that you should abandon the usage of assets catalog for icons. Indeed, this is not compatible with this feature :/. So, in this demo, it gives: 
+Everything about this feature is explained in this medium post: [iOS 10.3 Alternate Icons: what can you do and how it works ?](https://medium.com/@juli1quere/ios-10-3-alternate-icons-how-it-works-a628e06620b6#.uukwcdmiz).
 
-```
-	<key>CFBundleIcons</key>
-	<dict>
-		<key>CFBundleAlternateIcons</key>
-		<dict>
-			<key>de</key>
-			<dict>
-				<key>CFBundleIconFiles</key>
-				<array>
-					<string>ic_de</string>
-				</array>
-				<key>UIPrerenderedIcon</key>
-				<false/>
-			</dict>
-			<key>fr</key>
-			<dict>
-				<key>CFBundleIconFiles</key>
-				<array>
-					<string>ic_fr</string>
-				</array>
-				<key>UIPrerenderedIcon</key>
-				<false/>
-			</dict>
-			<key>it</key>
-			<dict>
-				<key>CFBundleIconFiles</key>
-				<array>
-					<string>ic_it</string>
-				</array>
-				<key>UIPrerenderedIcon</key>
-				<false/>
-			</dict>
-		</dict>
-		<key>CFBundlePrimaryIcon</key>
-		<dict>
-			<key>CFBundleIconFiles</key>
-			<array>
-				<string>ic_none</string>
-			</array>
-		</dict>
-	</dict>
-```
-	
-	
-There is 3 alternate icons: 
-
-* _de_ (which is bound to file `ic_de`)	
-* _fr_ (which is bound to file `ic_fr`)	
-* _it_ (which is bound to file `ic_it`)	
-
-And we have the primary icon (the default one) bound to file `ic_none`. 
-
-### Change
-Once the icons are declared, when simply have to call `setAlternateIconName(_:completionHandler:)` on `UIApplication` shared instance with one of the declared icon names. For instance, if we want `it` icon: 
-
-```      
-UIApplication.shared.setAlternateIconName("it") { (error) in
-	if let error = error {
-		print("err: \(error)")
-    }
-}
-```
-
-
-### Read
-If you want to know which icon is currently set up, just read ` alternateIconName`  on `UIApplication` shared instance: 
-
-```
-if UIApplication.shared.alternateIconName == "it" {
-	print("Viva italia")
-} else if UIApplication.shared.alternateIconName == "fr" {
-	print("Allez les bleus!")
-}
-```
 
 ## Demo
 To run the demo: simply clone this repo and open `SinpleSupporter.xcodeproj` with Xcode 8.3 (and above).         
